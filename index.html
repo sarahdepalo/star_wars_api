@@ -4,14 +4,24 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Star Wars API</title>
+    <meta name="description" content="Search for information about Star Wars Movies and the starships">
+    <link rel="stylesheet" href="css/styles.css">
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Abel&family=Lato:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div id="root">
+    <main>
+        
+        <h1>Search the Star Wars Universe</h1>
+
+        <div id="root">
+
         <div id ="starshipContainer">
             <form id = "starshipSearch">
                 <label>
-                    Starship Name
+                    Starship Name: 
                     <input type="text" placeholder="Enter a ship name" id="starshipInput">
                 </label>
                 <button type="submit" id="shipSearch">SEARCH SWAPI</button>
@@ -27,6 +37,7 @@
             </form>
         </div>
     </div>
+    </main>
     <script src = "js/script.js"></script>
 </body>
 </html>

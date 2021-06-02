@@ -1,6 +1,6 @@
 'use strict';
 
-// Fetch Starships
+// Initial Fetch Starships
 fetch ('https://swapi.dev/api/starships')
 .then(function(response) {
     return response.json();
@@ -12,7 +12,7 @@ fetch ('https://swapi.dev/api/starships')
     console.error("ERROR: ", error);
 });
 
-//Fetch Films
+//Initial Fetch Films
 
 fetch ('https://swapi.dev/api/films')
 .then(function(response) {
@@ -26,6 +26,7 @@ fetch ('https://swapi.dev/api/films')
     console.error("ERROR: ", error);
 });
 
+// DOM loaded
 document.addEventListener('DOMContentLoaded', function() {
     const starshipSearch = document.querySelector('#starshipSearch');
 
@@ -36,6 +37,7 @@ document.addEventListener('DOMContentLoaded', function() {
     })
 })
 
+// Grabs ship name from the search
 function searchShips(shipName) {
     console.log("searching for: ", shipName);
     fetch(`https://swapi.dev/api/starships/?search=${shipName}`)
@@ -54,13 +56,15 @@ function searchShips(shipName) {
     })
 }
 
+// Creates the shipResults Div
 function shipResults(data) {
     const shipSearchResults = data.results;
     const shipResultsDiv = document.querySelector('#starshipContainer');
 
     shipSearchResults.forEach(function(result) {
         const shipName = document.createElement('p');
-        shipName.innerText = `Name: ${result.name}`;
+        shipName.innerText = `The ${result.name}`;
+        shipName.classList.add('shipName');
         shipResultsDiv.appendChild(shipName);
 
         const manufacturer = document.createElement('p');
@@ -73,6 +77,7 @@ function shipResults(data) {
     })
 }
 
+//Populates the dropdown list of Movies
 function populateMovies(data) {
     const movieListForm = document.querySelector('#filmSearch');
     const selectElement = document.createElement('select');
@@ -83,13 +88,15 @@ function populateMovies(data) {
         selectElement.appendChild(movieOptionEl);
     });
     movieListForm.appendChild(selectElement);
-
+    
+    // Change to button
     selectElement.addEventListener('change', function(event){
         const movieName = event.target.value;
         fetchMovieInfo(movieName);
     })
 }
 
+// Fetch Movie Name that was Selected
 function fetchMovieInfo(movieName) {
     console.log(movieName);
     fetch (`https://swapi.dev/api/films/?search=${movieName}`)
@@ -101,6 +108,7 @@ function fetchMovieInfo(movieName) {
     })
 }
 
+// Creates MovieResults Div
 function movieResults(data) {
     console.log(data.title)
     console.log(data.results)
@@ -114,12 +122,13 @@ function movieResults(data) {
         movieResultsDiv.appendChild(movieName);
 
         const episodeNumber = document.createElement('p');
-        episodeNumber.innerText =`${result.episode_id}`;
+        episodeNumber.innerText =`Episode: ${result.episode_id}`;
         episodeNumber.classList.add('episodeNumber')
         movieResultsDiv.appendChild(episodeNumber);
 
         const releaseDate = document.createElement('p');
-        releaseDate.innerText = `${result.release_date}`;
+        releaseDate.innerText = `Released: ${result.release_date}`;
+        releaseDate.classList.add('releaseDate');
         movieResultsDiv.appendChild(releaseDate);
 
         const movieDescription = document.createElement('p');
@@ -129,9 +138,6 @@ function movieResults(data) {
 
         
     })
-
-
-
 
 
 
