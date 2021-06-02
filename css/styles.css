@@ -52,6 +52,7 @@ label, input, select {
     background-color: #fff;
     margin-top: -30px;
     border-radius: 25px;
+    margin-bottom: 40px;
 }
 
 #starshipContainer {
